@@ -8,7 +8,7 @@
 # REPO_NAME -- The Github repo to get the Python code from
 # GIT_BRANCH -- The release candidate branch
 # PYPI_NAME -- Either testpypi or pypi
-# PYPI_REPO -- Either https://test.pypi.org/legacy or https://upload.pypi.org/legacy/
+# PYPI_REPO -- Either https://test.pypi.org/legacy/ or https://upload.pypi.org/legacy/
 # PYPI_USERNAME -- The PYPI_REPO user
 # PYPI_PASSWORD -- The PYPI_REPO user's password
 # EXTENDED_VERSION_NUMBER -- Either `.$BUILD_NUMBER` for staging or leave out for prod
