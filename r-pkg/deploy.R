@@ -10,7 +10,7 @@ jenkins_deploy <- function(origin_dir,
                            artifacts_dir,
                            folder_pattern = 'label=.*-RVERS-.*',
                            rversion_pattern = 'label=.*-RVERS-') {
-    folders <- list.dirs(artifacts_dir, pattern=folder_pattern)
+    folders <- list.dirs(artifacts_dir, pattern = folder_pattern)
     for (folder in folders) {
         artifacts <- list.files(paste(artifacts_dir, folder, sep = "/"))
         for (artifact in artifacts) {
@@ -35,7 +35,7 @@ deploy_artifact <- function(artifact_file,
                             artifact_file_path,
                             origin_dir,
                             rversion,
-                            latestOnly=FALSE) {
+                            latestOnly = FALSE) {
     LINUX_SUFFIX <- '.tar.gz'
     MAC_SUFFIX <- '.tgz'
     WINDOWS_SUFFIX <- '.zip'
@@ -53,9 +53,9 @@ deploy_artifact <- function(artifact_file,
     }
     dest <- contrib.url(origin_dir, type=contribUrlType)
     current_rversion <- substr(getRversion(), 1, 3)
-    dest <- gsub(current_rversion, rversion, dest, fixed=TRUE)
-    dir.create(dest, showWarnings=FALSE, recursive=TRUE)
+    dest <- gsub(current_rversion, rversion, dest, fixed = TRUE)
+    dir.create(dest, showWarnings = FALSE, recursive = TRUE)
     file.rename(artifact_file_path, file.path(dest, get_file_name(artifact_file)))
-    tools:::write_PACKAGES(dest, type=writePackagesType, latestOnly=latestOnly)
+    tools:::write_PACKAGES(dest, type=writePackagesType, latestOnly = latestOnly)
 }
 
