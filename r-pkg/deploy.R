@@ -1,15 +1,15 @@
 #'
 #' Deploy new versions of a package.
 #'
+#' @param origin_dir Root directory that contains previous versions
 #' @param artifacts_dir Directory that contains the artifacts to be deployed
 #' @param folder_pattern Pattern to find artifact folders
 #' @param rversion_pattern Pattern to mask remove non-R-version on folder name
-#' @param origin_dir Root directory that contains previous versions
 #'
-jenkins_deploy <- function(artifacts_dir,
+jenkins_deploy <- function(origin_dir,
+                           artifacts_dir,
                            folder_pattern = 'label=.*-RVERS-.*',
-                           rversion_pattern = 'label=.*-RVERS-',
-                           origin_dir) {
+                           rversion_pattern = 'label=.*-RVERS-') {
     folders <- list.dirs(artifacts_dir, pattern=folder_pattern)
     for (folder in folders) {
         artifacts <- list.files(paste(artifacts_dir, folder, sep = "/"))

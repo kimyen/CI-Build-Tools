@@ -25,7 +25,7 @@ cd ..
 
 curl -o deploy.R https://github.com/kimyen/CI-Build-Tools/blob/WW-70/r-pkg/deploy.R
 R -e "source('$home/deploy.R);\
-jenkins_deploy($home, $home/$S3_RAN)"
+jenkins_deploy($home/$S3_RAN, $home)"
 
 # upload
 cd ${S3_RAN}
