@@ -23,7 +23,8 @@ cd ..
 # artifact folder = $home
 # ran folder = $home/s3_ran
 
-curl -o deploy.R https://github.com/kimyen/CI-Build-Tools/blob/WW-70/r-pkg/deploy.R
+curl -o deploy.R https://raw.githubusercontent.com/kimyen/CI-Build-Tools/WW-70/r-pkg/deploy.R
+
 R -e "source('$home/deploy.R');\
 jenkins_deploy('$home/$S3_RAN', '$home')"
 
