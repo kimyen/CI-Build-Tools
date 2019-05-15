@@ -6,6 +6,7 @@
 # AWS_ACCESS_KEY_ID -- S3 creds
 # AWS_SECRET_ACCESS_KEY -- S3 creds
 # S3_RAN -- either "staging-ran.synapse.org" or "ran.synapse.org"
+# ARTIFACTS_DIR -- the directory where the artifacts are copied to
 
 home=`pwd`
 
@@ -20,13 +21,10 @@ cd ${S3_RAN}
 aws s3 sync s3://${S3_RAN}/ .
 cd ..
 
-# artifact folder = $home
-# ran folder = $home/s3_ran
-
 curl -o deploy.R https://raw.githubusercontent.com/kimyen/CI-Build-Tools/WW-70/r-pkg/deploy.R
 
 R -e "source('$home/deploy.R');\
-jenkins_deploy('$home/$S3_RAN', '$home')"
+jenkins_deploy('$home/$S3_RAN', '$ARTIFACTS_DIR')"
 
 # upload
 cd ${S3_RAN}
