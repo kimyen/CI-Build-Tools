@@ -9,12 +9,16 @@ jenkins_deploy <- function(origin_dir,
                            artifacts_dir,
                            rversion_pattern = 'label=.*-RVERS-') {
     for (folder in list.dirs(artifacts_dir)) {
-        message(sprintf('Processing %s', folder))
-        artifacts <- list.files(paste(artifacts_dir, folder, sep = "/"))
+        if (folder == artifacts_dir) {
+            next
+        }
+        full_path <- paste(artifacts_dir, folder, sep = "/")
+        message(sprintf('Processing folder %s', full_path))
+        artifacts <- list.files(full_path)
         for (artifact in artifacts) {
-            message(sprintf('Processing %s', artifact))
+            message(sprintf('Processing artifact %s', artifact))
             deploy_artifact(artifact,
-                            paste(folder, artifact, sep = "/"),
+                            paste(full_path, artifact, sep = "/"),
                             origin_dir,
                             gsub(rversion_pattern, '', folder))
         }
