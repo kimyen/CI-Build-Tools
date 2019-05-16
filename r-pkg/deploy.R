@@ -57,7 +57,7 @@ deploy_artifact <- function(artifact_file,
     current_rversion <- substr(getRversion(), 1, 3)
     dest <- gsub(current_rversion, rversion, dest, fixed = TRUE)
     dir.create(dest, showWarnings = FALSE, recursive = TRUE)
-    installTo <- file.path(dest, get_file_name(artifact_file))
+    installTo <- file.path(dest, artifact_file)
     file.rename(artifact_file_path, installTo)
     tools:::write_PACKAGES(dest, type=writePackagesType, latestOnly = latestOnly)
     message(sprintf('Installed %s to %s', artifact_file_path, installTo))
