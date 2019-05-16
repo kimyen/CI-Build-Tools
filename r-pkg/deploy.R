@@ -8,6 +8,7 @@
 jenkins_deploy <- function(origin_dir,
                            artifacts_dir,
                            rversion_pattern = 'label=.*-RVERS-') {
+    message("say something")
     for (folder in list.dirs(artifacts_dir)) {
         artifacts <- list.files(paste(artifacts_dir, folder, sep = "/"))
         for (artifact in artifacts) {

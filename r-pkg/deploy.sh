@@ -26,8 +26,6 @@ curl -o deploy.R https://raw.githubusercontent.com/kimyen/CI-Build-Tools/WW-70/r
 R -e "source('$home/deploy.R');\
 jenkins_deploy('$home/$S3_RAN', '$ARTIFACTS_DIR')"
 
-echo "uploading"
-
 # upload
 cd ${S3_RAN}
 aws s3 sync --acl public-read . s3://${S3_RAN}/
