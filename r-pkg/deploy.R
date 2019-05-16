@@ -8,10 +8,11 @@
 jenkins_deploy <- function(origin_dir,
                            artifacts_dir,
                            rversion_pattern = 'label=.*-RVERS-') {
-    message("say something")
     for (folder in list.dirs(artifacts_dir)) {
+        message(sprintf('Processing %s', folder))
         artifacts <- list.files(paste(artifacts_dir, folder, sep = "/"))
         for (artifact in artifacts) {
+            message(sprintf('Processing %s', artifact))
             deploy_artifact(artifact,
                             paste(folder, artifact, sep = "/"),
                             origin_dir,
@@ -34,7 +35,6 @@ deploy_artifact <- function(artifact_file,
                             origin_dir,
                             rversion,
                             latestOnly = FALSE) {
-    message(sprintf('Processing %s', artifact_file_path))
     LINUX_SUFFIX <- '.tar.gz'
     MAC_SUFFIX <- '.tgz'
     WINDOWS_SUFFIX <- '.zip'
