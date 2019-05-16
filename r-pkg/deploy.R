@@ -3,15 +3,14 @@
 #'
 #' @param origin_dir Root directory that contains previous versions
 #' @param artifacts_dir Directory that contains the artifacts to be deployed
+#' @param folder_pattern Pattern to find artifact folders
 #' @param rversion_pattern Pattern to mask remove non-R-version on folder name
 #'
 jenkins_deploy <- function(origin_dir,
                            artifacts_dir,
+                           folder_pattern = 'label=.*-RVERS-.*',
                            rversion_pattern = 'label=.*-RVERS-') {
-    for (folder in list.dirs(artifacts_dir)) {
-        if (folder == artifacts_dir) {
-            next
-        }
+    for (folder in list.files(artifacts_dir, pattern = folder_pattern)) {
         full_path <- paste(artifacts_dir, folder, sep = "/")
         message(sprintf('Processing folder %s', full_path))
         artifacts <- list.files(full_path)
